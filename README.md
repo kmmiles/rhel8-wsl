@@ -4,7 +4,7 @@
 
 rhel8 distro for wsl2.
 
-minimal rhel8 + `podman` + `ansible` + "wsl" user with `sudo` access.
+minimal rhel8 + `podman` + "wsl" user with `sudo` access.
 
 ## Install
 
