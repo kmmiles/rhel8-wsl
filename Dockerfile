@@ -1,13 +1,9 @@
-FROM registry.redhat.io/ubi8/ubi:8.5-236.1647448331
+#FROM registry.redhat.io/ubi8/ubi:8.5-236.1647448331
+FROM redhat/ubi8
 ENV WSL_DISTRO_NAME rhel8
-WORKDIR /provision
-
-# reinstall all packages with update dnf.conf (install docs!)
 COPY ./etc/dnf.conf /etc/dnf/dnf.conf
-#COPY ./bin/reinstall-packages .
-#RUN set -ex; \
-#  /provision/reinstall-packages
 
+# install epel repo
 RUN set -ex; \
   yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
@@ -15,6 +11,7 @@ RUN set -ex; \
 RUN set -ex; \
   dnf upgrade -y && \
   dnf install -y \
+    glibc-langpack-en \
     redhat-lsb-core \ 
     cracklib-dicts \
     passwd \
