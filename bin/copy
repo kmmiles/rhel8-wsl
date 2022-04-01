@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/profile.sh
+
+cp -v "${root_dir:-}/dist/${docker_tag_name:-}-container.tar" /mnt/c/Users/kenne/WSL2/sources

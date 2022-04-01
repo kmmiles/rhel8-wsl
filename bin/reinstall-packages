@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ "$(id -u)" != "0" ]]; then
+  printf "This script must be ran as root!\n"
+  exit 1
+fi
+
+readarray -t packages < <(rpm -qa | sort)
+dnf reinstall -y "${packages[@]}"

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/profile.sh
+
+# build container, export rootfs, and create `dist/rhel8-wsl-version.zip`
+# TODO: i want a powershell script in the zip, which installs it as a distro.
+set -ex; \
+  rm -rf "${root_dir:-}"/dist && \
+  "${root_dir:-}"/bin/build && \
+  "${root_dir:-}"/bin/export && \
+  cp "${root_dir:-}"/bin/install.bat "${root_dir:-}/dist" &&
+  zip -jrm dist/rhel8-wsl.zip dist/*

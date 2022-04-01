@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/profile.sh
+
+set -ex
+
+if docker container exists "${docker_tag_name:-}"; then
+  docker container rm "${docker_tag_name:-}"
+fi
+
+docker run --name "${docker_tag_name:-}" "${docker_tag_name:-}"
+mkdir -p "${root_dir}/dist"
+docker export "${docker_tag_name:-}" --output="${root_dir}/dist/${docker_tag_name:-}-container.tar"
